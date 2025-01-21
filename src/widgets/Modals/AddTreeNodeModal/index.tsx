@@ -23,7 +23,7 @@ const AddTreeNodeModal: FC = observer(() => {
             const response = await TreeService.getTree(treeName);
             setTree(response.data);
         } catch (error: any) {
-            toast.error(error?.data?.message)
+            toast.error(error?.response?.data?.data?.message)
         }
         setLoading(false);
         setName('')

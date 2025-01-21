@@ -1,6 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-import styles from './index.module.scss';
-import { ITreeNode } from '../../shared/typescript/interfaces/ITreeNode';
 import TreeService from '../../shared/api/treeService';
 import { toast } from 'react-toastify';
 import TreeNode from '../../entities/TreeNode';
@@ -9,11 +7,8 @@ import { treeName } from '../../shared/constants/treeName';
 import { observer } from 'mobx-react-lite';
 import treeStore from '../../shared/store/tree';
 
-interface PropsTree {
 
-}
-
-const Tree: FC<PropsTree> = observer(() => {
+const Tree: FC = observer(() => {
     const [isLoadingTree, setIsLoadingTree] = useState<boolean>(false);
 
     const getTree = async () => {
@@ -22,7 +17,7 @@ const Tree: FC<PropsTree> = observer(() => {
             const response = await TreeService.getTree(treeName);
             treeStore.setTree(response.data);
         } catch (error: any) {
-            toast.error(error.message)
+            toast.error(error?.response?.data?.data?.message)
         }
         setIsLoadingTree(false);
     }
@@ -32,7 +27,7 @@ const Tree: FC<PropsTree> = observer(() => {
     }, [])
 
     return (
-        <div className={styles.container}>
+        <div>
             {isLoadingTree
                 ?
                 <Loader size={50} />
