@@ -1,0 +1,11 @@
+{
+    "name": "Test task tree",
+    "short_name": "Tree",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "description": "Test assignment for the company",
+    "display_override": ["standalone", "fullscreen"]
+}
